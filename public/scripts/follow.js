@@ -21,3 +21,9 @@ function allFollowers(fields) {
     .then(showResponse)
     .catch(showResponse);
 }
+
+function allFreetsByFollowing(fields) {
+    fetch('/api/follows/following/freets')
+    .then(showResponse)
+    .catch(showResponse);
+}

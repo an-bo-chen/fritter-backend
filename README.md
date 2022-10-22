@@ -315,11 +315,20 @@ This renders the `index.html` file that will be used to interact with the backen
 - `403` if the user is not logged in
 
 <!---Follow Concept--->
-#### `GET /api/follows/following` - gets all of the users that the user
+#### `GET /api/follows/following` - gets all of the users that the user follows
 
 **Returns**
 
 - An array containing all of the usernames that the user follows
+
+**Throws**
+- `403` if the user is not logged in
+
+#### `GET /api/follows/following/freets` - gets all freets from all of the users that the user follows
+
+**Returns**
+
+- An array containing all freets from all of the users that the user follows sorted in descending order by date modified
 
 **Throws**
 - `403` if the user is not logged in
@@ -333,7 +342,7 @@ This renders the `index.html` file that will be used to interact with the backen
 **Throws**
 - `403` if the user is not logged in
 
-#### `POST /api/follows/` - creates a new following with the user with username `username`
+#### `POST /api/follows/` - creates a new follow with the user with username `username`
 **Body**
 - `username` *{string}* - The user to follow
 
@@ -348,7 +357,7 @@ This renders the `index.html` file that will be used to interact with the backen
 - `404` if `username` is not a recognized username of any user
 - `409` if user already follows user with username `username`
 
-#### `DELETE /api/follows/` - deletes the following with the user with username `username`
+#### `DELETE /api/follows/` - deletes the follow with the user with username `username`
 **Body**
 - `username` *{string}* - The user to unfollow
 

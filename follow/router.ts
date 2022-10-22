@@ -1,10 +1,12 @@
 import type { NextFunction, Request, Response } from "express";
 import express from 'express';
 import UserCollection from '../user/collection';
+import FreetCollection from '../freet/collection';
 import FollowCollection from './collection';
 import * as userValidator from '../user/middleware';
 import * as followValidator from '../follow/middleware';
 import * as util from './util';
+import { constructFreetResponse } from '../freet/util';
 
 const router = express.Router();
 
@@ -28,6 +30,40 @@ const router = express.Router();
         
         res.status(200).json({
             message: 'Look at all your followings!',
+            following: response
+        });
+    }
+);
+
+/**
+ * Get all freets from the users that the user follows
+ *
+ * @name GET /api/follows/following/freets
+ *
+ * @return {FollowResponse[]} - A list of all the freets sorted in descending
+ *                      order by date modified
+ * @throws {403} if the user is not logged in
+ */
+ router.get(
+    '/following/freets',
+    [
+      userValidator.isUserLoggedIn
+    ],
+    async (req: Request, res: Response) => {
+        const user = await UserCollection.findOneByUserId(req.session.userId);
+        const following = await FollowCollection.findAllFollowing(user._id);
+        const response = (await Promise.all(following.map(async (follow) => {
+            const user = await UserCollection.findOneByUserId(follow.toBeFollowed);
+            return await FreetCollection.findAllByUsername(user.username);
+        })))
+        .flat()
+        .sort((freet1, freet2) => {
+            return freet2.dateModified.getTime() - freet1.dateModified.getTime();
+        })
+        .map(constructFreetResponse);
+        
+        res.status(200).json({
+            message: 'Look at your home feed!',
             following: response
         });
     }

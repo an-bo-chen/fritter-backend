@@ -42,7 +42,8 @@ const formsAndHandlers = {
   'follow-user': followUser,
   'unfollow-user': unfollowUser,
   'view-all-following': allFollowing,
-  'view-all-followers': allFollowers
+  'view-all-followers': allFollowers,
+  'view-freets-by-following': allFreetsByFollowing,
 };
 
 // Attach handlers to forms
