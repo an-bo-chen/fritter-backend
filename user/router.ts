@@ -1,4 +1,4 @@
-import type {Request, Response} from 'express';
+import type { Request, Response } from 'express';
 import express from 'express';
 import FreetCollection from '../freet/collection';
 import UserCollection from './collection';

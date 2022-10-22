@@ -1,6 +1,6 @@
-import type {Types, PopulatedDoc, Document} from 'mongoose';
-import {Schema, model} from 'mongoose';
-import type {User} from '../user/model';
+import type { Types, PopulatedDoc, Document } from 'mongoose';
+import { Schema, model } from 'mongoose';
+import type { User } from '../user/model';
 
 /**
  * This file defines the properties stored in a Freet

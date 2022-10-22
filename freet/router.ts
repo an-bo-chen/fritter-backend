@@ -1,4 +1,4 @@
-import type {NextFunction, Request, Response} from 'express';
+import type { NextFunction, Request, Response } from 'express';
 import express from 'express';
 import FreetCollection from './collection';
 import * as userValidator from '../user/middleware';

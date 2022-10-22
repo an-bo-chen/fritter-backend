@@ -1,6 +1,6 @@
-import type {HydratedDocument} from 'mongoose';
+import type { HydratedDocument } from 'mongoose';
 import moment from 'moment';
-import type {User} from './model';
+import type { User } from './model';
 
 // Update this if you add a property to the User type!
 type UserResponse = {

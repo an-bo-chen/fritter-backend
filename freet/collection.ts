@@ -1,5 +1,5 @@
-import type {HydratedDocument, Types} from 'mongoose';
-import type {Freet} from './model';
+import type { HydratedDocument, Types } from 'mongoose';
+import type { Freet } from './model';
 import FreetModel from './model';
 import UserCollection from '../user/collection';
 

@@ -1,7 +1,7 @@
 // This file must be in the /api folder for Vercel to detect it as a serverless function
-import type {Request, Response} from 'express';
+import type { Request, Response } from 'express';
 import express from 'express';
-import {engine} from 'express-handlebars';
+import { engine } from 'express-handlebars';
 import session from 'express-session';
 import path from 'path';
 import logger from 'morgan';
@@ -9,9 +9,9 @@ import http from 'http';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import * as userValidator from '../user/middleware';
-import {userRouter} from '../user/router';
-import {freetRouter} from '../freet/router';
-import {followRouter} from '../follow/router';
+import { userRouter } from '../user/router';
+import { freetRouter } from '../freet/router';
+import { followRouter } from '../follow/router';
 
 // Load environmental variables
 dotenv.config({});
@@ -43,7 +43,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, '../public')));
 
 // View engine setup
-app.engine('html', engine({extname: '.html', defaultLayout: false}));
+app.engine('html', engine({ extname: '.html', defaultLayout: false }));
 app.set('view engine', 'html');
 app.set('views', path.join(__dirname, '../public'));
 
@@ -57,7 +57,7 @@ app.use(logger('dev'));
 app.use(express.json());
 
 // Parse incoming requests with urlencoded payloads ('content-type: application/x-www-form-urlencoded' in header)
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 
 // Initialize cookie session
 app.use(session({
