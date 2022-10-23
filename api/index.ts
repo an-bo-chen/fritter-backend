@@ -10,8 +10,11 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import * as userValidator from '../user/middleware';
 import { userRouter } from '../user/router';
+
 import { freetRouter } from '../freet/router';
+import { anonymousFreetRouter } from '../anonymous-freet/router';
 import { followRouter } from '../follow/router';
+
 
 // Load environmental variables
 dotenv.config({});
@@ -78,6 +81,7 @@ app.get('/', (req: Request, res: Response) => {
 app.use('/api/users', userRouter);
 app.use('/api/freets', freetRouter);
 app.use('/api/follows', followRouter);
+app.use('/api/anonymousFreets', anonymousFreetRouter);
 
 // Catch all the other routes and display error message
 app.all('*', (req: Request, res: Response) => {

@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/stylesheets/style.css">
   <script src="/scripts/freet.js"></script>
+  <script src="/scripts/anonymousFreet.js"></script>
   <script src="/scripts/user.js"></script>
   <script src="/scripts/follow.js"></script>
   <script src="/scripts/index.js"></script>
@@ -110,15 +111,6 @@
           <input type="submit" value="Edit Freet">
         </form>
 
-        <form id="view-freet">
-          <h3>Increment Views on Freet</h3>
-          <div>
-            <label for="id">ID:</label>
-            <input id="id" name="id">
-          </div>
-          <input type="submit" value="Increment Views on Freet">
-        </form>
-
         <form id="delete-freet">
           <h3>Delete Freet</h3>
           <div>
@@ -159,6 +151,51 @@
         <form id="view-freets-by-following">
           <h3>Feed</h3>
           <input type="submit" value="Feed">
+        </form>
+
+        <form id="view-all-anonymous-freets">
+          <h3>View All Anonymous Freets</h3>
+          <input type="submit" value="View All Anonymous Freets">
+        </form>
+
+        <form id="view-anonymous-freets-by-author">
+          <h3>View Anonymous Freets By Author</h3>
+          <div>
+            <label for="author">Anonymous Author ID:</label>
+            <input id="author" name="author">
+          </div>
+          <input type="submit" value="View Anonymous Freets By Author">
+        </form>
+
+        <form id="create-anonymous-freet">
+          <h3>Create Anonymous Freet</h3>
+          <div>
+            <label for="content">Content:</label>
+            <textarea id="content" name="content"></textarea>
+          </div>
+          <input type="submit" value="Create Anonymous Freet">
+        </form>
+
+        <form id="edit-anonymous-freet">
+          <h3>Edit Anonymous Freet</h3>
+          <div>
+            <label for="id">ID:</label>
+            <input id="id" name="id">
+          </div>
+          <div>
+            <label for="content">Content:</label>
+            <textarea id="content" name="content"></textarea>
+          </div>
+          <input type="submit" value="Edit Anonymous Freet">
+        </form>
+
+        <form id="delete-anonymous-freet">
+          <h3>Delete Anonymous Freet</h3>
+          <div>
+            <label for="id">ID:</label>
+            <input id="id" name="id">
+          </div>
+          <input type="submit" value="Delete Anonymous Freet">
         </form>
       </div>
     </section>
