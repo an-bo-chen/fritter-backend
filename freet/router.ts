@@ -18,17 +18,17 @@ const router = express.Router();
 /**
  * Get freets by author.
  *
- * @name GET /api/freets?authorId=id
+ * @name GET /api/freets?author=USERNAME
  *
- * @return {FreetResponse[]} - An array of freets created by user with id, authorId
- * @throws {400} - If authorId is not given
- * @throws {404} - If no user has given authorId
+ * @return {FreetResponse[]} - An array of freets created by user with username, author
+ * @throws {400} - If author is not given
+ * @throws {404} - If no user has given username, author
  *
  */
 router.get(
   '/',
   async (req: Request, res: Response, next: NextFunction) => {
-    // Check if authorId query parameter was supplied
+    // Check if author query parameter was supplied
     if (req.query.author !== undefined) {
       next();
       return;
@@ -79,7 +79,7 @@ router.post(
 /**
  * Delete a freet
  *
- * @name DELETE /api/freets/:id
+ * @name DELETE /api/freets/:freetId
  *
  * @return {string} - A success message
  * @throws {403} - If the user is not logged in or is not the author of
@@ -104,7 +104,7 @@ router.delete(
 /**
  * Modify a freet
  *
- * @name PUT /api/freets/:id
+ * @name PUT /api/freets/:freetId
  *
  * @param {string} content - the new content for the freet
  * @return {FreetResponse} - the updated freet

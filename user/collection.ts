@@ -30,7 +30,7 @@ class UserCollection {
    * Find a user by userId.
    *
    * @param {string} userId - The userId of the user to find
-   * @return {Promise<HydratedDocument<User>> | Promise<null>} - The user with the given username, if any
+   * @return {Promise<HydratedDocument<User>> | Promise<null>} - The user with the given userId, if any
    */
   static async findOneByUserId(userId: Types.ObjectId | string): Promise<HydratedDocument<User>> {
     return UserModel.findOne({_id: userId});
@@ -51,7 +51,7 @@ class UserCollection {
    *
    * @param {string} username - The username of the user to find
    * @param {string} password - The password of the user to find
-   * @return {Promise<HydratedDocument<User>> | Promise<null>} - The user with the given username, if any
+   * @return {Promise<HydratedDocument<User>> | Promise<null>} - The user with the given username and password, if any
    */
   static async findOneByUsernameAndPassword(username: string, password: string): Promise<HydratedDocument<User>> {
     return UserModel.findOne({
