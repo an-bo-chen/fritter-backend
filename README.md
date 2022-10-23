@@ -357,7 +357,7 @@ This renders the `index.html` file that will be used to interact with the backen
 - `404` if `username` is not a recognized username of any user
 - `409` if user already follows user with username `username`
 
-#### `DELETE /api/follows?username=USERNAME` - deletes the follow with the user with username `username`
+#### `DELETE /api/follows/:username` - deletes the follow with the user with username `username`
 
 **Returns**
 
@@ -367,3 +367,73 @@ This renders the `index.html` file that will be used to interact with the backen
 - `400` if `username` is the current session user
 - `403` if the user is not logged in
 - `404` if `username` is not a recognized username of any user or if user already does not follow user with username `username` 
+
+<!---Anonymous User Concept--->
+
+
+<!---Anonymous Freet Concept--->
+
+#### `GET /api/anonymousFreets` - Get all the anonymous freets
+
+**Returns**
+
+- An array of all anonymous freets sorted in descending order by date modified
+
+#### `GET /api/anonymousFreets?authorId=id` - Get anonymous freets by author
+
+**Returns**
+
+- An array of freets created by user with id, `authorId`
+
+**Throws**
+
+- `400` if `authorId` is not given
+- `404` if `authorId` is not a recognized id of any anonymous user
+
+#### `POST /api/anonymousFreets` - Create a new anonymous freet
+
+**Body**
+
+- `content` _{string}_ - The content of the anonymous freet
+
+**Returns**
+
+- A success message
+- A object with the created anonymous freet
+
+**Throws**
+
+- `403` if the user is not logged in
+- `400` If the anonymous freet content is empty or a stream of empty spaces
+- `413` If the anonymous freet content is more than 140 characters long
+
+#### `DELETE /api/anonymousFreets/:anonymousFreetId?` - Delete an existing anonymous freet
+
+**Returns**
+
+- A success message
+
+**Throws**
+
+- `403` if the user is not logged in
+- `403` if the user is not the author of the anonymous freet
+- `404` if the anonymousFreetId is invalid
+
+#### `PUT /api/anonymousFreets/:anonymousFreetId?` - Update an existing anonymous freet
+
+**Body**
+
+- `content` _{string}_ - The new content of the anonymous freet
+
+**Returns**
+
+- A success message
+- An object with the updated anonymous freet
+
+**Throws**
+
+- `403` if the user is not logged in
+- `404` if the anonymousFreetId is invalid
+- `403` if the user is not the author of the anonymous freet
+- `400` if the new anonymous freet content is empty or a stream of empty spaces
+- `413` if the new anonymous freet content is more than 140 characters long
