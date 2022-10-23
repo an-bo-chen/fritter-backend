@@ -10,14 +10,14 @@ import type { User } from '../user/model';
 // Type definition for Follow on the backend
 export type Follow = {
     _id: Types.ObjectId; // MongoDB assigns each object this ID on creation
-    toBeFollowed: Types.ObjectId;
+    followee: Types.ObjectId;
     follower: Types.ObjectId;
     dateCreated: Date;
 };
 
 export type PopulatedFollow = {
     _id: Types.ObjectId; // MongoDB assigns each object this ID on creation
-    toBeFollowed: User;
+    followee: User;
     follower: User;
     dateCreated: Date;
 };
@@ -27,7 +27,7 @@ export type PopulatedFollow = {
 // Follows stored in this table will have these fields, with the
 // type given by the type property, inside MongoDB
 const FollowSchema = new Schema<Follow>({
-    toBeFollowed: {
+    followee: {
         type: Schema.Types.ObjectId,
         required: true,
         ref: 'User'

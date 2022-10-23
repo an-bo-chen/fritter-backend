@@ -5,24 +5,24 @@ function followUser(fields) {
 }
 
 function unfollowUser(fields) {
-    fetch('/api/follows', {method: 'DELETE', body: JSON.stringify(fields), headers: {'Content-Type': 'application/json'}})
+    fetch(`/api/follows?username=${fields.username}`, {method: 'DELETE', body: JSON.stringify(fields), headers: {'Content-Type': 'application/json'}})
     .then(showResponse)
     .catch(showResponse);
 }
 
-function allFollowing(fields) {
+function viewAllFollowing(fields) {
     fetch('/api/follows/following')
     .then(showResponse)
     .catch(showResponse);
 }
 
-function allFollowers(fields) {
+function viewAllFollowers(fields) {
     fetch('/api/follows/followers')
     .then(showResponse)
     .catch(showResponse);
 }
 
-function allFreetsByFollowing(fields) {
+function viewFreetsByFollowing(fields) {
     fetch('/api/follows/following/freets')
     .then(showResponse)
     .catch(showResponse);

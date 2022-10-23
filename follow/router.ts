@@ -53,7 +53,7 @@ const router = express.Router();
         const user = await UserCollection.findOneByUserId(req.session.userId);
         const following = await FollowCollection.findAllFollowing(user._id);
         const response = (await Promise.all(following.map(async (follow) => {
-            const user = await UserCollection.findOneByUserId(follow.toBeFollowed);
+            const user = await UserCollection.findOneByUserId(follow.followee);
             return await FreetCollection.findAllByUsername(user.username);
         })))
         .flat()
@@ -64,7 +64,7 @@ const router = express.Router();
         
         res.status(200).json({
             message: 'Look at your home feed!',
-            following: response
+            feed: response
         });
     }
 );
@@ -112,15 +112,16 @@ router.post(
         followValidator.isAlreadyFollow
     ],
     async (req: Request, res: Response) => {
-        const toBeFollowed = await UserCollection.findOneByUsername(req.body.username);
-        const followerId = req.session.userId;
+        const followee = req.body.username as string;
+        const followeeId = (await UserCollection.findOneByUsername(followee))._id;
+        const followerId = req.session.userId as string;
         
-        const follow = await FollowCollection.follow(toBeFollowed._id, followerId);
+        const follow = await FollowCollection.follow(followeeId, followerId);
         const response = util.constructFollowResponse(follow);
 
         res.status(201).json({
-            message: `You are now following ${req.body.username as string}!`,
-            follower: response
+            message: `You are now following ${followee}!`,
+            follow: response
         });
     }
 );
@@ -143,13 +144,14 @@ router.delete(
         followValidator.isAlreadyUnfollow
     ],
     async (req: Request, res: Response) => {
-        const toBeFollowed = await UserCollection.findOneByUsername(req.body.username);
-        const followerId = req.session.userId;
+        const followee = req.query.username as string;
+        const followeeId = (await UserCollection.findOneByUsername(followee))._id;
+        const followerId = req.session.userId as string;
         
-        await FollowCollection.unfollow(toBeFollowed.id, followerId);
+        await FollowCollection.unfollow(followeeId, followerId);
 
         res.status(201).json({
-            message: `You have unfollowed ${req.body.username as string}!`,
+            message: `You have unfollowed ${followee}!`,
         });
     }
 );

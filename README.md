@@ -357,9 +357,7 @@ This renders the `index.html` file that will be used to interact with the backen
 - `404` if `username` is not a recognized username of any user
 - `409` if user already follows user with username `username`
 
-#### `DELETE /api/follows/` - deletes the follow with the user with username `username`
-**Body**
-- `username` *{string}* - The user to unfollow
+#### `DELETE /api/follows?username=USERNAME` - deletes the follow with the user with username `username`
 
 **Returns**
 

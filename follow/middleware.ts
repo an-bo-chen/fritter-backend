@@ -7,7 +7,9 @@ import FollowCollection from '../follow/collection';
  *  Checks if user already follows another user
  */
 const isAlreadyFollow = async (req: Request, res: Response, next: NextFunction) => {
-    if (!req.body.username) {
+    const followeeUsername = req.body.username as string;
+    
+    if (!followeeUsername) {
         res.status(400).json({
           error: 'Provided username to follow must be nonempty.'
         });
@@ -15,11 +17,11 @@ const isAlreadyFollow = async (req: Request, res: Response, next: NextFunction) 
     }
     
     const currentUser = await UserCollection.findOneByUserId(req.session.userId);
-    const desiredUser = await UserCollection.findOneByUsername(req.body.username);
+    const desiredUser = await UserCollection.findOneByUsername(followeeUsername);
 
     if (!desiredUser) {
         res.status(404).json({
-          error: `The user with username ${req.body.username as string} that you are trying to follow does not exist.`
+          error: `The user with username ${followeeUsername} that you are trying to follow does not exist.`
         });
         return;
       }
@@ -48,7 +50,7 @@ const isAlreadyFollow = async (req: Request, res: Response, next: NextFunction) 
  *  Checks if user already does not follow another user
  */
  const isAlreadyUnfollow = async (req: Request, res: Response, next: NextFunction) => {
-    if (!req.body.username) {
+    if (!req.query.username) {
         res.status(400).json({
           error: 'Provided username to unfollow must be nonempty.'
         });

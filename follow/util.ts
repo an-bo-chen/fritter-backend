@@ -4,7 +4,7 @@ import type { Follow, PopulatedFollow } from '../follow/model';
 
 type FollowResponse = {
     _id: string;
-    toBeFollowed: string;
+    followee: string;
     follower: string;
     dateCreated: string;
 };
@@ -33,7 +33,7 @@ type FollowResponse = {
     
     return {
       _id: followCopy._id.toString(),
-      toBeFollowed: followCopy.toBeFollowed.username,
+      followee: followCopy.followee.username,
       follower: followCopy.follower.username,
       dateCreated: formatDate(follow.dateCreated)
     };
