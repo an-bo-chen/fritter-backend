@@ -112,15 +112,15 @@ router.post(
         followValidator.isAlreadyFollow
     ],
     async (req: Request, res: Response) => {
-        const followee = req.body.username as string;
-        const followeeId = (await UserCollection.findOneByUsername(followee))._id;
+        const username = req.body.username as string;
+        const followeeId = (await UserCollection.findOneByUsername(username))._id;
         const followerId = req.session.userId as string;
         
         const follow = await FollowCollection.follow(followeeId, followerId);
         const response = util.constructFollowResponse(follow);
 
         res.status(201).json({
-            message: `You are now following ${followee}!`,
+            message: `You are now following ${username}!`,
             follow: response
         });
     }
@@ -144,14 +144,14 @@ router.delete(
         followValidator.isAlreadyUnfollow
     ],
     async (req: Request, res: Response) => {
-        const followee = req.query.username as string;
-        const followeeId = (await UserCollection.findOneByUsername(followee))._id;
+        const username = req.query.username as string;
+        const followeeId = (await UserCollection.findOneByUsername(username))._id;
         const followerId = req.session.userId as string;
         
         await FollowCollection.unfollow(followeeId, followerId);
 
         res.status(201).json({
-            message: `You have unfollowed ${followee}!`,
+            message: `You have unfollowed ${username}!`,
         });
     }
 );
