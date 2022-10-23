@@ -50,9 +50,9 @@ const isAlreadyFollow = async (req: Request, res: Response, next: NextFunction) 
  *  Checks if user already does not follow another user
  */
  const isAlreadyUnfollow = async (req: Request, res: Response, next: NextFunction) => {
-    const username = req.query.username as string
+    const username = req.params.username as string
     
-    if (!req.query.username) {
+    if (!username) {
         res.status(400).json({
           error: 'Provided username to unfollow must be nonempty.'
         });

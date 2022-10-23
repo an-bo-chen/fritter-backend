@@ -138,13 +138,13 @@ router.post(
  * @throws {404} if current user already does nt follow desired user
  */
 router.delete(
-    '/',
+    '/:username',
     [
         userValidator.isUserLoggedIn,
         followValidator.isAlreadyUnfollow
     ],
     async (req: Request, res: Response) => {
-        const username = req.query.username as string;
+        const username = req.params.username as string;
         const followeeId = (await UserCollection.findOneByUsername(username))._id;
         const followerId = req.session.userId as string;
         

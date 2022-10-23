@@ -5,7 +5,7 @@ function followUser(fields) {
 }
 
 function unfollowUser(fields) {
-    fetch(`/api/follows?username=${fields.username}`, {method: 'DELETE', body: JSON.stringify(fields), headers: {'Content-Type': 'application/json'}})
+    fetch(`/api/follows/${fields.username}`, {method: 'DELETE', body: JSON.stringify(fields), headers: {'Content-Type': 'application/json'}})
     .then(showResponse)
     .catch(showResponse);
 }
