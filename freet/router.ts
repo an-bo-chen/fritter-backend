@@ -131,4 +131,4 @@ router.put(
   }
 );
 
-export {router as freetRouter};
+export { router as freetRouter };

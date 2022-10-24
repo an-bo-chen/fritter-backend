@@ -25,7 +25,7 @@ class AnonymousModeCollection {
      * @return {Promise<HydratedDocument<AnonymousMode>> | Promise<null> } - The anonymous mode with the given useId, if any
      */
     static async findOne(userId: Types.ObjectId | string): Promise<HydratedDocument<AnonymousMode>> {
-        return AnonymousModeModel.findOne({userId: userId}).populate('userId');
+        return AnonymousModeModel.findOne({ userId: userId }).populate('userId');
     }
 
     /**
@@ -36,7 +36,7 @@ class AnonymousModeCollection {
      * @return {Promise<HydratedDocument<AnonymousMode>>} - The newly updated anonymous Mode
      */
     static async updateOne(userId: Types.ObjectId | string, mode: boolean): Promise<HydratedDocument<AnonymousMode>> {
-        const anonymousMode = await AnonymousModeModel.findOne({userId: userId});
+        const anonymousMode = await AnonymousModeModel.findOne({ userId: userId });
         anonymousMode.isAnonymousMode = mode;
         await anonymousMode.save();
         return anonymousMode.populate('userId');
@@ -49,7 +49,7 @@ class AnonymousModeCollection {
      * @return {Promise<Boolean>} - true if the anonymous mode has been deleted, false otherwise
      */
     static async deleteOne(userId: Types.ObjectId | string): Promise<boolean> {
-        const anonymousMode = await AnonymousModeModel.deleteOne({userId: userId});
+        const anonymousMode = await AnonymousModeModel.deleteOne({ userId: userId });
         return anonymousMode !== null;
     }
 }

@@ -157,4 +157,4 @@ router.delete(
   }
 );
 
-export {router as userRouter};
+export { router as userRouter };

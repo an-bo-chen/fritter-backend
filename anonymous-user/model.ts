@@ -9,9 +9,9 @@ import type { User } from '../user/model';
 
 // Type definition for Anonymous User on the backend
 export type AnonymousUser = {
-  _id: Types.ObjectId; // MongoDB assigns each object this ID on creation
-  publicUserId: Types.ObjectId;
-  dateJoined: Date;
+    _id: Types.ObjectId; // MongoDB assigns each object this ID on creation
+    publicUserId: Types.ObjectId;
+    dateJoined: Date;
 };
 
 // Mongoose schema definition for interfacing with a MongoDB table

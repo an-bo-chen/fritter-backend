@@ -28,8 +28,8 @@ class AnonymousUserCollection {
      * @param {string} anonymousUserId - The anonymousUserId of the anonymous user to find
      * @return {Promise<HydratedDocument<AnonymousUser>> | Promise<null>} - The anonymous user with the given anonymousUserId, if any
      */
-     static async findOneByAnonymousUserId(anonymousUserId: Types.ObjectId | string): Promise<HydratedDocument<AnonymousUser>> {
-        return AnonymousUserModel.findOne({_id: anonymousUserId});
+    static async findOneByAnonymousUserId(anonymousUserId: Types.ObjectId | string): Promise<HydratedDocument<AnonymousUser>> {
+        return AnonymousUserModel.findOne({ _id: anonymousUserId });
     }
 
     /**
@@ -39,7 +39,7 @@ class AnonymousUserCollection {
      * @return {Promise<HydratedDocument<AnonymousUser>> | Promise<null>} - The anonymous user of the associated public user
      */
     static async findOneByPublicUserId(publicUserId: Types.ObjectId | string): Promise<HydratedDocument<AnonymousUser>> {
-        return AnonymousUserModel.findOne({publicUserId: publicUserId});
+        return AnonymousUserModel.findOne({ publicUserId: publicUserId });
     }
 
     /**
@@ -49,7 +49,7 @@ class AnonymousUserCollection {
      * @return {Promise<Boolean>} - true if the anonymous user has been deleted, false otherwise
      */
     static async deleteOne(publicUserId: Types.ObjectId | string): Promise<boolean> {
-        const anonymousUser = await AnonymousUserModel.deleteOne({publicUserId: publicUserId});
+        const anonymousUser = await AnonymousUserModel.deleteOne({ publicUserId: publicUserId });
         return anonymousUser !== null;
     }
 }

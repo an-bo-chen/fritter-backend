@@ -22,7 +22,7 @@ const constructAnonymousModeResponse = (anonymousMode: HydratedDocument<Anonymou
     })
   };
 
-  const {username} = anonymousModeCopy.userId
+  const { username } = anonymousModeCopy.userId
   delete anonymousModeCopy.userId;
   return {
     ...anonymousModeCopy,

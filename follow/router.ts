@@ -18,16 +18,16 @@ const router = express.Router();
  * @return {FollowResponse[]} - A list of all users by their ids that the user follows
  * @throws {403} if the user is not logged in
  */
- router.get(
+router.get(
     '/following',
     [
-      userValidator.isUserLoggedIn
+        userValidator.isUserLoggedIn
     ],
     async (req: Request, res: Response) => {
         const user = await UserCollection.findOneByUserId(req.session.userId);
         const following = await FollowCollection.findAllFollowing(user._id);
         const response = following.map(util.constructFollowResponse);
-        
+
         res.status(200).json({
             message: 'Look at all your followings!',
             following: response
@@ -44,10 +44,10 @@ const router = express.Router();
  *                      order by date modified
  * @throws {403} if the user is not logged in
  */
- router.get(
+router.get(
     '/following/freets',
     [
-      userValidator.isUserLoggedIn
+        userValidator.isUserLoggedIn
     ],
     async (req: Request, res: Response) => {
         const user = await UserCollection.findOneByUserId(req.session.userId);
@@ -56,12 +56,12 @@ const router = express.Router();
             const user = await UserCollection.findOneByUserId(follow.followee);
             return await FreetCollection.findAllByUsername(user.username);
         })))
-        .flat()
-        .sort((freet1, freet2) => {
-            return freet2.dateModified.getTime() - freet1.dateModified.getTime();
-        })
-        .map(constructFreetResponse);
-        
+            .flat()
+            .sort((freet1, freet2) => {
+                return freet2.dateModified.getTime() - freet1.dateModified.getTime();
+            })
+            .map(constructFreetResponse);
+
         res.status(200).json({
             message: 'Look at your home feed!',
             feed: response
@@ -77,10 +77,10 @@ const router = express.Router();
  * @return {FollowResponse[]} - A list of all users by their ids that follows the user
  * @throws {403} if the user is not logged in
  */
- router.get(
+router.get(
     '/followers',
     [
-      userValidator.isUserLoggedIn
+        userValidator.isUserLoggedIn
     ],
     async (req: Request, res: Response) => {
         const user = await UserCollection.findOneByUserId(req.session.userId);
@@ -115,7 +115,7 @@ router.post(
         const username = req.body.username as string;
         const followeeId = (await UserCollection.findOneByUsername(username))._id;
         const followerId = req.session.userId as string;
-        
+
         const follow = await FollowCollection.follow(followeeId, followerId);
         const response = util.constructFollowResponse(follow);
 
@@ -147,7 +147,7 @@ router.delete(
         const username = req.params.username as string;
         const followeeId = (await UserCollection.findOneByUsername(username))._id;
         const followerId = req.session.userId as string;
-        
+
         await FollowCollection.unfollow(followeeId, followerId);
 
         res.status(201).json({
@@ -156,4 +156,4 @@ router.delete(
     }
 );
 
-export {router as followRouter};
+export { router as followRouter };

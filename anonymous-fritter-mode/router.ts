@@ -32,7 +32,7 @@ router.get(
             message: 'You have sucessfully found the mode of the given user!',
             response: util.constructAnonymousModeResponse(anonymousMode)
         });
-   }
+    }
 );
 
 
@@ -64,4 +64,4 @@ router.put(
     }
 );
 
-export {router as anonymousModeRouter}
+export { router as anonymousModeRouter }

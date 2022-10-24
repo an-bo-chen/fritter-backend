@@ -6,25 +6,25 @@ import FollowCollection from '../follow/collection';
 /**
  *  Checks if user already follows another user
  */
-const isAlreadyFollow = async (req: Request, res: Response, next: NextFunction) => {    
+const isAlreadyFollow = async (req: Request, res: Response, next: NextFunction) => {
     const username = req.body.username as string;
-    
+
     if (!username) {
         res.status(400).json({
-          error: 'Provided username to follow must be nonempty.'
+            error: 'Provided username to follow must be nonempty.'
         });
         return;
     }
-    
+
     const follower = await UserCollection.findOneByUserId(req.session.userId);
     const followee = await UserCollection.findOneByUsername(username);
 
     if (!followee) {
         res.status(404).json({
-          error: `The user with username ${username} that you are trying to follow does not exist.`
+            error: `The user with username ${username} that you are trying to follow does not exist.`
         });
         return;
-      }
+    }
 
     if (follower.username == followee.username) {
         res.status(400).json({
@@ -49,25 +49,25 @@ const isAlreadyFollow = async (req: Request, res: Response, next: NextFunction) 
 /**
  *  Checks if user already does not follow another user
  */
- const isAlreadyUnfollow = async (req: Request, res: Response, next: NextFunction) => {
+const isAlreadyUnfollow = async (req: Request, res: Response, next: NextFunction) => {
     const username = req.params.username as string
-    
+
     if (!username) {
         res.status(400).json({
-          error: 'Provided username to unfollow must be nonempty.'
+            error: 'Provided username to unfollow must be nonempty.'
         });
         return;
     }
-    
+
     const follower = await UserCollection.findOneByUserId(req.session.userId);
     const followee = await UserCollection.findOneByUsername(username);
 
     if (!followee) {
         res.status(404).json({
-          error: `The user with username ${username} that you are trying to unfollow does not exist.`
+            error: `The user with username ${username} that you are trying to unfollow does not exist.`
         });
         return;
-      }
+    }
 
     if (follower.username == followee.username) {
         res.status(400).json({

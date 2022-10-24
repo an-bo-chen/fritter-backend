@@ -1,6 +1,6 @@
 import type { HydratedDocument } from 'mongoose';
 import moment from 'moment';
-import type { AnonymousFreet} from '../anonymous-freet/model';
+import type { AnonymousFreet } from '../anonymous-freet/model';
 
 type AnonymousFreetResponse = {
   _id: string;
@@ -31,7 +31,7 @@ const constructAnonymousFreetResponse = (anonymousFreet: HydratedDocument<Anonym
       versionKey: false // Cosmetics; prevents returning of __v property
     })
   };
-  
+
   return {
     ...anonymousFreetCopy,
     _id: anonymousFreetCopy._id.toString(),
