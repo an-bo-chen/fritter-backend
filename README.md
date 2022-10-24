@@ -368,9 +368,6 @@ This renders the `index.html` file that will be used to interact with the backen
 - `403` if the user is not logged in
 - `404` if `username` is not a recognized username of any user or if user already does not follow user with username `username` 
 
-<!---Anonymous User Concept--->
-
-
 <!---Anonymous Freet Concept--->
 
 #### `GET /api/anonymousFreets` - Get all the anonymous freets
@@ -437,3 +434,34 @@ This renders the `index.html` file that will be used to interact with the backen
 - `403` if the user is not the author of the anonymous freet
 - `400` if the new anonymous freet content is empty or a stream of empty spaces
 - `413` if the new anonymous freet content is more than 140 characters long
+
+<!---Anonymous Mode Concept--->
+
+#### `GET /api/anonymousMode/:username?` - Get whether user is in anonymous mode or not
+
+**Returns**
+
+- An anonymous mode object of the user with id, userId
+
+**Throws**
+
+- `403` if the user is not logged in
+- `400` if username is not given
+- `404` if username is not a recognized username of any user
+
+#### `PUT /api/anonymousMode/:username?` - Switch an user into or out of anonymous mode
+
+**Body** _(no need to add fields that are not being changed)_
+
+- `mode` _{boolean}_ - a Boolean representing true if switching user into and false if switching out of anonymous mode
+
+**Returns**
+
+- A success message
+- An object with the updated anonymous mode details
+
+**Throws**
+
+- `403` if the user is not logged in
+- `400` if username is not given
+- `404` if username is not a recognized username of any user

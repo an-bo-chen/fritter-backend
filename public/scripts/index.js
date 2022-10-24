@@ -48,7 +48,9 @@ const formsAndHandlers = {
   'view-anonymous-freets-by-author': viewAnonymousFreetsByAuthor,
   'create-anonymous-freet': createAnonymousFreet,
   'edit-anonymous-freet': editAnonymousFreet,
-  'delete-anonymous-freet': deleteAnonymousFreet
+  'delete-anonymous-freet': deleteAnonymousFreet,
+  'view-anonymous-mode-by-user': viewAnonymousModeByUser,
+  'edit-anonymous-mode-by-user': editAnonymousModeByUser
 };
 
 // Attach handlers to forms

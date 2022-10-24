@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="/stylesheets/style.css">
   <script src="/scripts/freet.js"></script>
   <script src="/scripts/anonymousFreet.js"></script>
+  <script src="/scripts/anonymousMode.js"></script>
   <script src="/scripts/user.js"></script>
   <script src="/scripts/follow.js"></script>
   <script src="/scripts/index.js"></script>
@@ -196,6 +197,28 @@
             <input id="id" name="id">
           </div>
           <input type="submit" value="Delete Anonymous Freet">
+        </form>
+
+        <form id="view-anonymous-mode-by-user">
+          <h3>View Anonymous Mode By User</h3>
+          <div>
+            <label for="username">Username:</label>
+            <input id="username" name="username">
+          </div>
+          <input type="submit" value="View Anonymous Mode By User">
+        </form>
+
+        <form id="edit-anonymous-mode-by-user">
+          <h3>Edit Anonymous Mode By User</h3>
+          <div>
+            <label for="username">Username:</label>
+            <input id="username" name="username">
+          </div>
+          <div>
+            <label for="mode">JSON:</label>
+            <textarea id="mode" name="mode"></textarea>
+          </div>
+          <input type="submit" value="Edit Anonymous Mode By User">
         </form>
       </div>
     </section>

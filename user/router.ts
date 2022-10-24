@@ -2,10 +2,11 @@ import type { Request, Response } from 'express';
 import express from 'express';
 import FreetCollection from '../freet/collection';
 import AnonymousUserCollection from '../anonymous-user/collection';
+import AnonymousFreetCollection from '../anonymous-freet/collection';
+import AnonymousModeCollection from '../anonymous-fritter-mode/collection';
 import UserCollection from './collection';
 import * as userValidator from '../user/middleware';
 import * as util from './util';
-import AnonymousFreetCollection from '../anonymous-freet/collection';
 
 const router = express.Router();
 
@@ -90,6 +91,7 @@ router.post(
     const user = await UserCollection.addOne(req.body.username, req.body.password);
     req.session.userId = user._id.toString();
     await AnonymousUserCollection.addOne(user._id); // create an associated anonymous user for user
+    await AnonymousModeCollection.addOne(user._id); // create an associated anonymous mode oject for uesr
     res.status(201).json({
       message: `Your account was created successfully. You have been logged in as ${user.username}`,
       user: util.constructUserResponse(user)
@@ -145,6 +147,7 @@ router.delete(
     const anonymousUserId = (await AnonymousUserCollection.findOneByPublicUserId(userId))._id;
     await UserCollection.deleteOne(userId);
     await AnonymousUserCollection.deleteOne(userId); // delete associated anonymous user
+    await AnonymousModeCollection.deleteOne(userId); // delete associated anonymous mode object
     await FreetCollection.deleteMany(userId); // delete all freets associated with user
     await AnonymousFreetCollection.deleteMany(anonymousUserId); // delete all anonymous freets associated with anonymous user
     req.session.userId = undefined;

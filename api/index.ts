@@ -14,6 +14,7 @@ import { userRouter } from '../user/router';
 import { freetRouter } from '../freet/router';
 import { anonymousFreetRouter } from '../anonymous-freet/router';
 import { followRouter } from '../follow/router';
+import { anonymousModeRouter } from '../anonymous-fritter-mode/router';
 
 
 // Load environmental variables
@@ -82,6 +83,7 @@ app.use('/api/users', userRouter);
 app.use('/api/freets', freetRouter);
 app.use('/api/follows', followRouter);
 app.use('/api/anonymousFreets', anonymousFreetRouter);
+app.use('/api/anonymousMode', anonymousModeRouter);
 
 // Catch all the other routes and display error message
 app.all('*', (req: Request, res: Response) => {
