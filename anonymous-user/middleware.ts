@@ -6,7 +6,7 @@ import AnonymousUserCollection from '../anonymous-user/collection';
  * Checks if an anonymous user with anonymousUserId as author id in req.query exists
  */
 const isAuthorExists = async (req: Request, res: Response, next: NextFunction) => {
-    const anonymousUserId = req.query.author as string;
+    const anonymousUserId = req.query.authorId as string;
     if (!anonymousUserId) {
       res.status(400).json({
         error: 'Provided author id must be nonempty.'

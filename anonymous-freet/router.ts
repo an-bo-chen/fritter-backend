@@ -31,7 +31,7 @@ router.get(
   '/',
   async (req: Request, res: Response, next: NextFunction) => {
     // Check if authorId query parameter was supplied
-    if (req.query.author !== undefined) {
+    if (req.query.authorId !== undefined) {
       next();
       return;
     }
@@ -44,7 +44,7 @@ router.get(
     anonymousUserValidator.isAuthorExists
   ],
   async (req: Request, res: Response) => {
-    const anonymousAuthorFreets = await AnonymousFreetCollection.findAllByAnonymousUserId(req.query.author as string);
+    const anonymousAuthorFreets = await AnonymousFreetCollection.findAllByAnonymousUserId(req.query.authorId as string);
     
     const response = anonymousAuthorFreets.map(util.constructAnonymousFreetResponse);
     res.status(200).json(response);

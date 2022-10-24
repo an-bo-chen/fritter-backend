@@ -46,9 +46,9 @@ import AnonymousFreetModel from './model';
      * Get all the anonymous freets in by given author
      *
      * @param {string} anonymousAuthorId - The id of author of anonymous freets
-     * @return {Promise<HydratedDocument<Freet>[]>} - An array of all of the anonymous freets
+     * @return {Promise<HydratedDocument<AnonymousFreet>[]>} - An array of all of the anonymous freets
      */
-    static async findAllByAnonymousUserId(anonymousAuthorId: string): Promise<Array<HydratedDocument<AnonymousFreet>>> {
+    static async findAllByAnonymousUserId(anonymousAuthorId: Types.ObjectId | string): Promise<Array<HydratedDocument<AnonymousFreet>>> {
       return AnonymousFreetModel.find({anonymousAuthorId: anonymousAuthorId});
     }
   
@@ -57,7 +57,7 @@ import AnonymousFreetModel from './model';
      *
      * @param {string} anonymousFreetId - The id of the anonymous freet to be updated
      * @param {string} content - The new content of the anonymous freet
-     * @return {Promise<HydratedDocument<Freet>>} - The newly updated anonymous freet
+     * @return {Promise<HydratedDocument<AnonymousFreet>>} - The newly updated anonymous freet
      */
     static async updateOne(anonymousFreetId: Types.ObjectId | string, content: string): Promise<HydratedDocument<AnonymousFreet>> {
       const anonymousFreet = await AnonymousFreetModel.findOne({_id: anonymousFreetId});

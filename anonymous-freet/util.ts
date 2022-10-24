@@ -1,9 +1,10 @@
 import type { HydratedDocument } from 'mongoose';
 import moment from 'moment';
-import type { AnonymousFreet } from '../anonymous-freet/model';
+import type { AnonymousFreet} from '../anonymous-freet/model';
 
 type AnonymousFreetResponse = {
   _id: string;
+  anonymousAuthorId: string,
   dateCreated: string;
   content: string;
   dateModified: string;
@@ -31,10 +32,10 @@ const constructAnonymousFreetResponse = (anonymousFreet: HydratedDocument<Anonym
     })
   };
   
-  delete anonymousFreetCopy.anonymousAuthorId;
   return {
     ...anonymousFreetCopy,
     _id: anonymousFreetCopy._id.toString(),
+    anonymousAuthorId: anonymousFreetCopy.anonymousAuthorId._id.toString(),
     dateCreated: formatDate(anonymousFreet.dateCreated),
     dateModified: formatDate(anonymousFreet.dateModified)
   };

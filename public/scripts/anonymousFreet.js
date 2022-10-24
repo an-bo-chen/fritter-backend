@@ -5,7 +5,7 @@
   }
   
   function viewAnonymousFreetsByAuthor(fields) {
-    fetch(`/api/freets?authorId=${fields.author}`)
+    fetch(`/api/anonymousFreets?authorId=${fields.authorId}`)
       .then(showResponse)
       .catch(showResponse);
   }
