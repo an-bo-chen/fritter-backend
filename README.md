@@ -206,8 +206,8 @@ This renders the `index.html` file that will be used to interact with the backen
 **Throws**
 
 - `403` if the user is not logged in
-- `400` If the freet content is empty or a stream of empty spaces
-- `413` If the freet content is more than 140 characters long
+- `400` If the freet `content` is empty or a stream of empty spaces
+- `413` If the freet `content` is more than 140 characters long
 
 #### `DELETE /api/freets/:freetId?` - Delete an existing freet
 
@@ -219,7 +219,7 @@ This renders the `index.html` file that will be used to interact with the backen
 
 - `403` if the user is not logged in
 - `403` if the user is not the author of the freet
-- `404` if the freetId is invalid
+- `404` if the `freetId` is invalid
 
 #### `PUT /api/freets/:freetId?` - Update an existing freet
 
@@ -255,7 +255,7 @@ This renders the `index.html` file that will be used to interact with the backen
 **Throws**
 
 - `403` if the user is already logged in
-- `400` if username or password is not in correct format format or missing in the req
+- `400` if `username` or `password` is not in correct format format or missing in the req
 - `401` if the user login credentials are invalid
 
 #### `DELETE /api/users/session` - Sign out user
@@ -283,8 +283,8 @@ This renders the `index.html` file that will be used to interact with the backen
 **Throws**
 
 - `403` if there is a user already logged in
-- `400` if username or password is in the wrong format
-- `409` if username is already in use
+- `400` if `username` or `password` is in the wrong format
+- `409` if `username` is already in use
 
 #### `PUT /api/users` - Update a user's profile
 
@@ -301,8 +301,8 @@ This renders the `index.html` file that will be used to interact with the backen
 **Throws**
 
 - `403` if the user is not logged in
-- `400` if username or password is in the wrong format
-- `409` if the username is already in use
+- `400` if `username` or `password` is in the wrong format
+- `409` if the `username` is already in use
 
 #### `DELETE /api/users` - Delete user
 
@@ -401,8 +401,8 @@ This renders the `index.html` file that will be used to interact with the backen
 **Throws**
 
 - `403` if the user is not logged in
-- `400` If the anonymous freet content is empty or a stream of empty spaces
-- `413` If the anonymous freet content is more than 140 characters long
+- `400` If the anonymous freet `content` is empty or a stream of empty spaces
+- `413` If the anonymous freet `content` is more than 140 characters long
 
 #### `DELETE /api/anonymousFreets/:anonymousFreetId?` - Delete an existing anonymous freet
 
@@ -414,7 +414,7 @@ This renders the `index.html` file that will be used to interact with the backen
 
 - `403` if the user is not logged in
 - `403` if the user is not the author of the anonymous freet
-- `404` if the anonymousFreetId is invalid
+- `404` if the `anonymousFreetId` is invalid
 
 #### `PUT /api/anonymousFreets/:anonymousFreetId?` - Update an existing anonymous freet
 
@@ -430,10 +430,10 @@ This renders the `index.html` file that will be used to interact with the backen
 **Throws**
 
 - `403` if the user is not logged in
-- `404` if the anonymousFreetId is invalid
+- `404` if the `anonymousFreetId` is invalid
 - `403` if the user is not the author of the anonymous freet
-- `400` if the new anonymous freet content is empty or a stream of empty spaces
-- `413` if the new anonymous freet content is more than 140 characters long
+- `400` if the new anonymous freet `content` is empty or a stream of empty spaces
+- `413` if the new anonymous freet `content` is more than 140 characters long
 
 <!---Anonymous Mode Concept--->
 
@@ -441,13 +441,13 @@ This renders the `index.html` file that will be used to interact with the backen
 
 **Returns**
 
-- An anonymous mode object of the user with id, userId
+- An anonymous mode object of the user with username, `username`
 
 **Throws**
 
 - `403` if the user is not logged in
-- `400` if username is not given
-- `404` if username is not a recognized username of any user
+- `400` if `username` is not given
+- `404` if `username` is not a recognized username of any user
 
 #### `PUT /api/anonymousMode/:username?` - Switch an user into or out of anonymous mode
 
@@ -463,5 +463,5 @@ This renders the `index.html` file that will be used to interact with the backen
 **Throws**
 
 - `403` if the user is not logged in
-- `400` if username is not given
-- `404` if username is not a recognized username of any user
+- `400` if `username` is not given
+- `404` if `username` is not a recognized username of any user
